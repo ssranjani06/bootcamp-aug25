@@ -4,3 +4,24 @@ to ec2 for ses auth
 2. our app generate logs, setup a log rotation for them. 
 
 3. Write your detained inytro in yaml format
+
+
+aws cli login
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# ECR login
+
+# aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
+
+
+aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 879381241087.dkr.ecr.ap-south-1.amazonaws.com
+
+
+
+postgresql://{username}:{password}@{host}:5432/{db_name}
+
+
+DB_LINK
+postgresql://postgres:admin1234@ecs-app.cvik8accw2tk.ap-south-1.rds.amazonaws.com:5432/ecsdb
