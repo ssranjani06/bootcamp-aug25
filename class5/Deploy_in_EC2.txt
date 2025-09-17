@@ -1,0 +1,20 @@
+
+Remove everything in the code related to AWS_ACCESS_KEY and AWS_SECRET_KEY. 
+
+Remove in docker-compose.yml and alert_service.py
+
+Create an IAM role ec2_ses and attach AWS_SES_Fullaccess IAM Policy to it.
+
+Then select the instance Actions -> Security -> Modify IAM Role and select the role ec2_ses
+
+Finally i have deployed the container monitoring app in EC2. After changing the instance type to t3.medium i had to edit the SG inbound rules. Then only i can access the app using public ip. 
+
+publicip:8001 for monitoring dashboard
+publicip:8080 for app
+
+Allow TCP port 8001 from 0.0.0.0/0
+Allow TCP port 8080 from 0.0.0.0/0
+Allow TCP port 443 from 0.0.0.0/0 (if using HTTPS)
+
+I had to add sudo usermod -a -G docker $USER 
+after installing docker

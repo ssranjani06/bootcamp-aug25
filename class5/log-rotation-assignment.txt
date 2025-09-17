@@ -1,0 +1,22 @@
+# Create the logrotate config
+sudo tee /etc/logrotate.d/python-app-logs <<EOF
+/home/ec2-user/bootcamp-aug25/class5/project/logs/*.log {
+    daily
+    rotate 30
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 644 ec2-user ec2-user
+    copytruncate
+}
+EOF
+
+# Test it
+sudo logrotate -d /etc/logrotate.d/python-app-logs
+
+# Force test rotation
+sudo logrotate -f /etc/logrotate.d/python-app-logs
+
+# Check results
+ls -la /home/ec2-user/bootcamp-aug25/class5/project/logs/
