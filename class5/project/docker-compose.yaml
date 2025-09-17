@@ -98,8 +98,6 @@ services:
       - CONTAINER_NAME=monitored-app
       - ALERT_LOG=/var/log/container_alerts.log
       - AWS_REGION=${AWS_REGION:-ap-south-1}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - SENDER_EMAIL=${SENDER_EMAIL}
       - RECIPIENT_EMAILS=${RECIPIENT_EMAILS}
       - CHECK_INTERVAL=${CHECK_INTERVAL:-30}
