@@ -1,0 +1,86 @@
+This is a comprehensive Docker Container Monitoring Script that provides real-time monitoring, 
+alerting, and visualization for Docker containers. Let me break down its key components and functionality:
+Primary Purpose
+The script monitors Docker container health, resource usage, and application performance with multiple 
+monitoring modes and alerting capabilities.
+Core Features
+1. Resource Monitoring
+
+CPU Usage: Tracks container CPU consumption as a percentage
+Memory Usage: Monitors both absolute (MB) and percentage memory usage
+Response Time: Measures application response time via HTTP health checks
+Container Status: Checks if container is running or stopped
+
+2. Health Checking
+
+Makes HTTP requests to a /health endpoint on port 80
+Measures response times and validates HTTP status codes
+Determines application health based on response codes (200 = healthy)
+
+3. Alert System
+
+Threshold-based alerts for CPU, memory, and response time
+Alert logging to dedicated log files
+Extensible alert mechanisms (commented code shows email/Slack integration options)
+Real-time notifications when thresholds are exceeded
+
+4. Data Logging & Reporting
+
+CSV metrics file for historical data tracking
+General activity logs for monitoring events
+Alert-specific logs for threshold violations
+Comprehensive reports with statistical summaries
+
+5. Multiple Operating Modes
+Single Check Mode (monitor):
+bash./script.sh monitor
+# Performs one-time health and resource check
+Continuous Mode (continuous):
+bash./script.sh continuous
+# Runs monitoring every 60 seconds in background
+Live Interactive Mode (live):
+bash./script.sh live
+# Real-time dashboard with visual progress bars and live updates
+Report Generation (report):
+bash./script.sh report
+# Generates comprehensive monitoring report with statistics
+Configuration
+The script uses environment variables for flexible configuration:
+bash# Example usage with custom settings
+CONTAINER_NAME="my-app" \
+CPU_THRESHOLD="75" \
+MEMORY_THRESHOLD="85" \
+RESPONSE_TIME_THRESHOLD="2000" \
+./script.sh live
+Visual Features
+The live mode includes:
+
+Color-coded progress bars (green/yellow/red based on usage levels)
+Real-time dashboard with Unicode box drawing characters
+Status indicators using emojis
+Live metric updates every 2 seconds
+
+Data Output
+
+Metrics CSV: timestamp,cpu_percent,memory_usage_mb,memory_percent,response_time_ms,status
+Alert logs: Timestamped alert entries
+Reports: Statistical summaries with averages and recent alerts
+
+Key Technical Details
+Resource Collection
+Uses docker stats JSON output to extract CPU and memory metrics, with careful parsing to handle different 
+memory units (MiB/GiB).
+Health Checking
+Assumes containerized applications expose a health endpoint and measures both availability and response time.
+Error Handling
+Includes comprehensive error handling for missing containers, network issues, and malformed data.
+Typical Use Cases
+
+DevOps monitoring of production containers
+Performance testing and resource optimization
+Automated alerting for container issues
+Historical analysis of container performance
+Real-time troubleshooting with the live dashboard
+
+This script essentially transforms basic Docker monitoring into a comprehensive observability solution 
+with logging, alerting, and visualization capabilities.
